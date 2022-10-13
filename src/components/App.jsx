@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { ThemeProvider } from 'styled-components'
 import { theme } from 'theme/theme';
+import { nanoid } from "nanoid";
 
 import { Container } from "./Container/Container";
 import { MainTitle } from './Titles/MainTitle/MainTitle'
@@ -14,13 +15,26 @@ export class App extends Component{
   name: ''
   }
   
-  
+ handleSubmit = (values, actions) => {
+            console.log(values);
+   console.log(actions);
+
+   console.log(this.addNewContact());
+  }
+
+  addNewContact = () => {
+    const newContact = {
+      id: nanoid(),
+    }
+   console.log(newContact);
+  }
+
   render() {
-    const {name, contacts} = this.state
+    const {name,} = this.state
     return <ThemeProvider theme={theme}>
       <Container display="flex" flexDirection="column" alignItems="center" padding="3">
         <MainTitle title='Phonebook' />
-        <ContactForm name={name} contacts={contacts} />
+        <ContactForm name={name} getData={this.handleSubmit}/>
         <SecondaryTitle title='Contacts' />
         <ContactList/>
       </Container>

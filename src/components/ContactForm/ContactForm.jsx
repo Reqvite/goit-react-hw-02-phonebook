@@ -2,14 +2,10 @@ import { FormStyled, Label, Input, Button } from "./ContactForm.style";
 
 import { Formik } from "formik";
 
-export const ContactForm = (({ name, contacts }) => {
-const handleSubmit = (values, actions) => {
-            console.log(values);
-    console.log(actions);
-    console.log(contacts);
-    }
+export const ContactForm = (({ name, getData }) => {
+
     return (
-    <Formik  initialValues={{ name }} onSubmit={handleSubmit}>
+    <Formik  initialValues={{ name }} onSubmit={getData}>
    <FormStyled>
  <Label htmlFor="name">Name
    <Input
