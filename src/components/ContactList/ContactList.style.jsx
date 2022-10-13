@@ -25,6 +25,13 @@ display:flex;
     font-size: ${p => p.theme.fontSizes[3]}px;
     font-family: ${p => p.theme.fonts.monospace};
 `
+export const Notification = styled.p`
+    color: ${p => p.theme.colors.mainTextColor};
+    font-weight: ${p => p.theme.fontWeights.bold};
+    font-size: ${p => p.theme.fontSizes[3]}px;
+    font-family: ${p => p.theme.fonts.monospace};
+`
+
 export const Name = styled.p`
   margin-right: ${p => p.theme.space[1]}px; 
 `

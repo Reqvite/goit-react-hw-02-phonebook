@@ -2,6 +2,7 @@ import { Component } from "react";
 import { ThemeProvider } from 'styled-components'
 import { theme } from 'theme/theme';
 import { nanoid } from "nanoid";
+import Swal from "sweetalert2";
 
 import { Container } from "./Container/Container";
 import { MainTitle } from './Titles/MainTitle/MainTitle'
@@ -22,40 +23,57 @@ export class App extends Component{
   }
   
   handleSubmit = (values, { resetForm }) => {
-   console.log(values);
     this.addNewContact(values)
        resetForm()
   }
 
-  handleFilter = (e) => {
-    console.log(e.target.value);
-    this.setState({filter: e.currentTarget.value})
-  }
-
-  addNewContact = (values) => {
+    addNewContact = (values) => {
     const newContact = {
       id: nanoid(),
       name: values.name,
       number: values.number,
-    }
-    
-    this.setState(prevState => ({
+      }
+      console.log(!this.state.contacts.map((contact => contact.name.toLowerCase())).includes(values.name));
+      if (!this.state.contacts.map((contact => contact.name.toLowerCase())).includes(values.name)) {
+       Swal.fire({
+  title: `${values.name} is already in contacts.`,
+  icon: 'info',
+  confirmButtonText: 'Okay'
+         })
+      } else {
+        this.setState(prevState => ({
       contacts: [newContact, ...prevState.contacts]
     }  
     ))
-
-
+    }
   }
 
+  handleFilter = (e) => {
+    this.setState({ filter: e.currentTarget.value })
+    this.renderFilterList()
+  }
+
+  renderFilterList = () => {
+    const { contacts, filter } = this.state;
+       return contacts
+        .map(contact => contact)
+        .filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()))
+  }
+
+
+
   render() {
-    const {name,number, filter, contacts} = this.state
+    const { name, number, contacts} = this.state
+
+    const filterList = this.renderFilterList();
+
     return <ThemeProvider theme={theme}>
       <Container display="flex" flexDirection="column" alignItems="center" padding="3">
         <MainTitle title='Phonebook' />
         <ContactForm name={name} number={number} getData={this.handleSubmit}/>
         <SecondaryTitle title='Contacts' />
-        <Filter title='Find contacts by name' value={filter} contacts={contacts} handleFilter={this.handleFilter} />
-        <ContactList contacts={contacts}/>
+        <Filter title='Find contacts by name' handleFilter={this.handleFilter} />
+        <ContactList filterContacts={filterList} contacts={contacts}/>
       </Container>
       </ThemeProvider>
   }

@@ -1,17 +1,21 @@
-import { List, ListItem, Name } from "./ContactList.style";
+import { List, Notification, ListItem, Name } from "./ContactList.style";
 
-export const ContactList = (({contacts}) => {
-    
+export const ContactList = (({filterContacts, contacts}) => {
+ 
     return (
         <List>
-            {contacts.map((contact => 
-                <ListItem key={contact.id}>
+            {contacts.length === 0
+                ? <Notification>You don't have contacts.</Notification>
+               :filterContacts.length === 0
+             ? <Notification>No contacts were found matching your request.</Notification>
+              : filterContacts.map(({id, name, number}) => 
+                <ListItem key={id}>
                     <Name>
-                    {contact.name}:
+                    {name}:
                 </Name>
-                    <span>{contact.number}</span>
+                    <span>{number}</span>
                 </ListItem>    
-          ))} 
+          )} 
         </List>
     )
 })
