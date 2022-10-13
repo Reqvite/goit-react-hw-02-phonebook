@@ -36,8 +36,8 @@ export const Input = styled(Field)`
     background-color: transparent;
     outline: none;
     resize: none;
+    border-radius: 5px;
 
-    transition: border-bottom 1000ms cubic-bezier(0.075, 0.82, 0.165, 1);
 `
 
 export const Button = styled.button`
