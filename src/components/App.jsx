@@ -24,19 +24,19 @@ export class App extends Component{
   
   handleSubmit = (values, { resetForm }) => {
     this.addNewContact(values)
-       resetForm()
+    resetForm()
   }
 
-    addNewContact = (values) => {
+  addNewContact = (values) => {
+    const { name, number } = values;
     const newContact = {
       id: nanoid(),
-      name: values.name,
-      number: values.number,
-      }
-      console.log(!this.state.contacts.map((contact => contact.name.toLowerCase())).includes(values.name));
-      if (!this.state.contacts.map((contact => contact.name.toLowerCase())).includes(values.name)) {
+      name,
+      number
+    }
+      if (this.state.contacts.map((({name}) => name.toLowerCase())).includes(name.toLowerCase())) {
        Swal.fire({
-  title: `${values.name} is already in contacts.`,
+  title: `${name} is already in contacts.`,
   icon: 'info',
   confirmButtonText: 'Okay'
          })
@@ -57,14 +57,17 @@ export class App extends Component{
     const { contacts, filter } = this.state;
        return contacts
         .map(contact => contact)
-        .filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()))
+        .filter(({name}) => name.toLowerCase().includes(filter.toLowerCase()))
   }
 
-
+  deleteContact = (id) => {
+    this.setState(({contacts}) => ({
+      contacts: contacts.filter((contact => contact.id !== id)),
+   }))
+ }
 
   render() {
     const { name, number, contacts} = this.state
-
     const filterList = this.renderFilterList();
 
     return <ThemeProvider theme={theme}>
@@ -73,7 +76,7 @@ export class App extends Component{
         <ContactForm name={name} number={number} getData={this.handleSubmit}/>
         <SecondaryTitle title='Contacts' />
         <Filter title='Find contacts by name' handleFilter={this.handleFilter} />
-        <ContactList filterContacts={filterList} contacts={contacts}/>
+        <ContactList filterContacts={filterList} contacts={contacts} deleteContact={this.deleteContact}/>
       </Container>
       </ThemeProvider>
   }

@@ -1,6 +1,6 @@
-import { List, Notification, ListItem, Name } from "./ContactList.style";
+import { List, Notification, ListItem, Name, DeleteBtn } from "./ContactList.style";
 
-export const ContactList = (({filterContacts, contacts}) => {
+export const ContactList = (({filterContacts, contacts, deleteContact}) => {
  
     return (
         <List>
@@ -13,7 +13,8 @@ export const ContactList = (({filterContacts, contacts}) => {
                     <Name>
                     {name}:
                 </Name>
-                    <span>{number}</span>
+                      <span>{number}</span>
+                      <DeleteBtn type="button" onClick={() => deleteContact(id)}>Delete</DeleteBtn>
                 </ListItem>    
           )} 
         </List>
