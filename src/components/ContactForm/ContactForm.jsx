@@ -1,6 +1,8 @@
+import { Formik } from "formik";
+import PropTypes from 'prop-types';
+
 import { FormStyled, Label, Input, Button } from "./ContactForm.style";
 
-import { Formik } from "formik";
 
 export const ContactForm = (({ name, number, getData }) => {
 
@@ -30,6 +32,13 @@ export const ContactForm = (({ name, number, getData }) => {
     </Formik>
     )
 })
+
+
+ContactForm.propTypes = {
+  name: PropTypes.string,
+  number: PropTypes.string,
+  getData: PropTypes.func,
+}
 
 
    

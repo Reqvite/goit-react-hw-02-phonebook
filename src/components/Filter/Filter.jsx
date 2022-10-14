@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { FilterTitle, FilterInput } from "./Filter.styled"
 export const Filter = (({title,handleFilter}) => {
    
@@ -8,3 +9,8 @@ export const Filter = (({title,handleFilter}) => {
         </>
     )
 })
+
+Filter.propTypes = {
+    title: PropTypes.string,
+    handleFilter: PropTypes.func,
+}

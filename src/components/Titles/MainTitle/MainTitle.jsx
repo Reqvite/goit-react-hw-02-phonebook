@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { HeroTitle } from "./MainTitle.style"
 
 export const MainTitle = (({ title }) => {
@@ -6,3 +7,7 @@ export const MainTitle = (({ title }) => {
     )
     
 })
+
+MainTitle.propTypes = {
+    title: PropTypes.string,
+}

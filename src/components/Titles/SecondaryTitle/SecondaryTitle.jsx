@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Title } from "./SecondaryTitle.style"
 
 export const SecondaryTitle = (({ title }) => {
@@ -6,3 +7,7 @@ export const SecondaryTitle = (({ title }) => {
     )
     
 })
+
+SecondaryTitle.propTypes = {
+    title: PropTypes.string,
+}
