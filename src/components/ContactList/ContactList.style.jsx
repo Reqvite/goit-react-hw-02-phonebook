@@ -60,6 +60,6 @@ export const DeleteBtn = styled.button`
 
   &:hover,
   &:focus {
-    background-color: #ebe4e4;
+    background-color:  #c56767;
   }
 `
