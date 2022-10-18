@@ -9,5 +9,5 @@ export const SecondaryTitle = (({ title }) => {
 })
 
 SecondaryTitle.propTypes = {
-    title: PropTypes.string,
+    title: PropTypes.string.isRequired,
 }

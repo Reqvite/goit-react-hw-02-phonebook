@@ -35,9 +35,9 @@ export const ContactForm = (({ name, number, getData }) => {
 
 
 ContactForm.propTypes = {
-  name: PropTypes.string,
-  number: PropTypes.string,
-  getData: PropTypes.func,
+  name: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
+  getData: PropTypes.func.isRequired,
 }
 
 

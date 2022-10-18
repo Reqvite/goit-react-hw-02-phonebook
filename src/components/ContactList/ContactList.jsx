@@ -23,7 +23,7 @@ export const ContactList = (({filterContacts, contacts, deleteContact}) => {
 })
 
 ContactList.propTypes = {
-  filterContacts: PropTypes.array, 
-  contacts: PropTypes.array,
-  deleteContact: PropTypes.func,
+  filterContacts: PropTypes.array.isRequired, 
+  contacts: PropTypes.array.isRequired,
+  deleteContact: PropTypes.func.isRequired,
 }

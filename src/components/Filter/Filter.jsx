@@ -11,6 +11,6 @@ export const Filter = (({title,handleFilter}) => {
 })
 
 Filter.propTypes = {
-    title: PropTypes.string,
-    handleFilter: PropTypes.func,
+    title: PropTypes.string.isRequired,
+    handleFilter: PropTypes.func.isRequired,
 }
