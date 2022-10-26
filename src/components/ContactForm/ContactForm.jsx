@@ -4,10 +4,9 @@ import PropTypes from 'prop-types';
 import { FormStyled, Label, Input, Button } from "./ContactForm.style";
 
 
-export const ContactForm = (({ name, number, getData }) => {
-
+export const ContactForm = (({getData }) => {
     return (
-    <Formik  initialValues={{ name, number }} onSubmit={getData}>
+    <Formik  initialValues={{ name: '', number: '' }} onSubmit={getData}>
    <FormStyled>
  <Label htmlFor="name">Name
    <Input
@@ -35,8 +34,6 @@ export const ContactForm = (({ name, number, getData }) => {
 
 
 ContactForm.propTypes = {
-  name: PropTypes.string.isRequired,
-  number: PropTypes.string.isRequired,
   getData: PropTypes.func.isRequired,
 }
 

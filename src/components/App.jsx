@@ -65,13 +65,13 @@ export class App extends Component{
  }
 
   render() {
-    const { name, number, contacts} = this.state
+    const {contacts} = this.state
     const filterList = this.renderFilterList();
 
     return <ThemeProvider theme={theme}>
       <Container display="flex" flexDirection="column" alignItems="center" padding="3">
         <MainTitle title='Phonebook' />
-        <ContactForm name={name} number={number} getData={this.handleSubmit}/>
+        <ContactForm getData={this.handleSubmit}/>
         <SecondaryTitle title='Contacts' />
         <Filter title='Find contacts by name' handleFilter={this.handleFilter} />
         <ContactList filterContacts={filterList} contacts={contacts} deleteContact={this.deleteContact}/>
