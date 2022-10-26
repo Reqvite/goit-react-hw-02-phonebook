@@ -53,9 +53,7 @@ export class App extends Component{
 
   renderFilterList = () => {
     const { contacts, filter } = this.state;
-       return contacts
-        .map(contact => contact)
-        .filter(({name}) => name.toLowerCase().includes(filter.toLowerCase()))
+       return contacts.filter(({name}) => name.toLowerCase().includes(filter.toLowerCase()))
   }
 
   deleteContact = (id) => {
