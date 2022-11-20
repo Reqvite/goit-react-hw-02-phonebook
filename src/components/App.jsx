@@ -2,7 +2,6 @@ import { Component } from "react";
 import { ThemeProvider } from 'styled-components'
 import { theme } from 'theme/theme';
 import { nanoid } from "nanoid";
-import Swal from "sweetalert2";
 
 import { Container } from "./Container/Container";
 import { MainTitle } from './Titles/MainTitle/MainTitle'
@@ -33,11 +32,7 @@ export class App extends Component{
       number
     }
       if (this.state.contacts.map((({name}) => name.toLowerCase())).includes(name.toLowerCase())) {
-       Swal.fire({
-  title: `${name} is already in contacts.`,
-  icon: 'info',
-  confirmButtonText: 'Okay'
-         })
+       alert(`${name} is already in contacts.`)
       } else {
         this.setState(prevState => ({
       contacts: [newContact, ...prevState.contacts]
